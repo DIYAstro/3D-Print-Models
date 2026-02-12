@@ -4,6 +4,14 @@ This OpenSCAD script generates a mounting frame for refractor telescopes to crea
 
 ---
 
+## Requirements & Recommendation
+
+> [!IMPORTANT]
+> **Recommended Software:** Use **[OpenSCAD Nightly (Development Snapshot)](https://openscad.org/downloads.html#snapshots)**. 
+> The nightly versions include the newer **Manifold** engine, which handles complex boolean operations (like the V-grooves in this model) much faster and more reliably than the stable release.
+
+---
+
 ## Technical Parameters
 
 ### Base Geometry
