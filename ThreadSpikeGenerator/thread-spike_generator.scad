@@ -22,6 +22,8 @@ wall_thickness = 3;
 number_of_spikes = 2; 
 // Width of the V-groove at the top
 v_groove_width = 3; 
+// Diameter of the threading holes at the ends of the grooves
+thread_hole_diameter = 1.2;
 
 /* [Resolution & Precision] */
 // Higher value = smoother circles (100-300 is usually perfect)
@@ -65,6 +67,10 @@ module spike_generator() {
         // 4. SUBTRACT: V-Grooves
         translate([0, 0, sleeve_depth + top_thickness + eps])
             create_v_grooves(plate_outer_d);
+
+        // 5. SUBTRACT: Threading Holes
+        translate([0, 0, sleeve_depth - 1])
+            create_threading_holes(plate_outer_d);
     }
 }
 
@@ -74,6 +80,23 @@ module create_v_grooves(diameter) {
         rotate([0, 0, i * angle_step]) {
             rotate([45, 0, 0])
                 cube([diameter + 10, v_groove_width, v_groove_width], center = true);
+        }
+    }
+}
+
+module create_threading_holes(diameter) {
+    angle_step = 180 / number_of_spikes;
+    hole_offset = (diameter / 2) - (thread_hole_diameter * 1.5);
+    
+    for (i = [0 : number_of_spikes - 1]) {
+        rotate([0, 0, i * angle_step]) {
+            // Hole 1 (positive X)
+            translate([hole_offset, 0, 0])
+                cylinder(d = thread_hole_diameter, h = top_thickness + 2);
+            
+            // Hole 2 (negative X)
+            translate([-hole_offset, 0, 0])
+                cylinder(d = thread_hole_diameter, h = top_thickness + 2);
         }
     }
 }

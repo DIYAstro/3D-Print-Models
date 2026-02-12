@@ -27,6 +27,7 @@ This OpenSCAD script generates a mounting frame for refractor telescopes to crea
     * 2 results in 4 spikes (90° offset).
     * 3 results in 6 spikes (60° offset).
 * v_groove_width: Top opening width of the V-notch. The V-shape ensures self-centering for various thread gauges.
+* thread_hole_diameter: Diameter of the holes at the outer ends of the grooves for easy threading and fixing.
 
 ### Tolerances & Resolution
 * $fn: Circular resolution (fragment count). Set to 200 for smooth surfaces.
